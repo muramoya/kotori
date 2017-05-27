@@ -1,6 +1,6 @@
 vendor
 .env
-#.env.example
-#storage/logs/*
-#storage/session/*
+.env.example
+storage/logs/*
+storage/session/*
 core/testing
