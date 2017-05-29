@@ -19,7 +19,7 @@ function env($key, $default = null)
 {
     $value = getenv($key);
 
-    if ($value === false) {
+    if ($value === false || empty($value)) {
         return $default;
     }
 
@@ -44,7 +44,8 @@ function env($key, $default = null)
  * @return string
  * @throws KtrRuntimeException
  */
-function get_lang($id, $placeHolder = array()) {
+function get_lang($id, $placeHolder = array())
+{
     //get lang
     $conf = Config::factory('app.php');
     $path = $conf->appLangPath . '/' . $conf->locale . '.ini';
@@ -54,4 +55,14 @@ function get_lang($id, $placeHolder = array()) {
     $line = $config->$id;
 
     return vsprintf($line, $placeHolder);
+}
+
+/**
+ * スネークケースをキャメルケースに変換
+ * @param $str
+ * @return string
+ */
+function camelize($str)
+{
+    return ucfirst(strtr(ucwords(strtr($str, ['_' => ' '])), [' ' => '']));
 }
