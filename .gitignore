@@ -4,3 +4,4 @@ vendor
 storage/logs/*
 storage/session/*
 core/testing
+composer.lock
