@@ -37,7 +37,7 @@ class Model extends Command
         $appConf = Config::factory('app.php');
         $extends = strlen($input->getOption('extends')) > 0 ? $input->getOption('extends') : 'default';
         $format = $this->formatExtendsOption($extends);
-        if(!$format['res'])
+        if (!$format['res'])
         {
             $output->writeln('<bg=red>' . $format['msg'] . '</bg=red>');
             return false;
@@ -53,7 +53,7 @@ class Model extends Command
         $fileName = $class . '.php';
         $path = realpath(__DIR__ . '/../../../apps/models') . '/' . $fileName;
 
-        if(file_exists($path))
+        if (file_exists($path))
         {
             $output->writeln('<bg=red>' . $class . ' is already exists.</bg=red>');
             return false;
@@ -67,7 +67,7 @@ class Model extends Command
 
     private function formatExtendsOption($option)
     {
-        if(strpos($option, ',') !== false)
+        if (strpos($option, ',') !== false)
         {
             $arr = explode(',', $option);
 

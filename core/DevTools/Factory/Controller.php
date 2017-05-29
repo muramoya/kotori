@@ -36,7 +36,7 @@ class Controller extends Command
         $fileName = $input->getArgument('name') . '.php';
         $path = realpath(__DIR__ . '/../../../apps/controllers') . '/' . $fileName;
 
-        if(file_exists($path))
+        if (file_exists($path))
         {
             $output->writeln('<bg=red>' . $input->getArgument('name') . ' is already exists.</bg=red>');
             return false;

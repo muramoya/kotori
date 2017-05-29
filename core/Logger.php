@@ -33,7 +33,7 @@ class Logger
     public function __construct($fileName = null) {
         $conf = Config::factory('app.php');
 
-        if((bool)$fileName) {
+        if ((bool)$fileName) {
             $logFile =  $conf->appLogPath . '/' . $fileName;
         } else {
             $logFile = $conf->appLogPath . '/' . $conf->defaultAppLogFileName;
@@ -67,8 +67,8 @@ class Logger
     public function write(array $contents, $level = null) {
         $this->logger->begin();
         foreach ($contents as $content) {
-            if(!is_array($content) || !isset($content['level'])) {
-                if(is_null($level)) {
+            if (!is_array($content) || !isset($content['level'])) {
+                if (is_null($level)) {
                     $this->warning('No log level set');
                     $this->info($content);
                 } else {

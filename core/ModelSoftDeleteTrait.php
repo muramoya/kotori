@@ -33,7 +33,7 @@ trait ModelSoftDeleteTrait
      */
     public static function find($parameters = null, $withDeleted = false) {
         $isNotDeleted = 'deleted_at IS NULL';
-        if(!$withDeleted) {
+        if (!$withDeleted) {
             $parameters = self::appendParams($parameters, $isNotDeleted);
         }
         return parent::find($parameters);
@@ -47,7 +47,7 @@ trait ModelSoftDeleteTrait
      */
     public static function findFirst($parameters = null, $withDeleted = false) {
         $isNotDeleted = 'deleted_at IS NULL';
-        if(!$withDeleted) {
+        if (!$withDeleted) {
             $parameters = self::appendParams($parameters, $isNotDeleted);
         }
         return parent::findFirst($parameters);

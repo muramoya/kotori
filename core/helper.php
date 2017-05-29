@@ -49,7 +49,7 @@ function get_lang($id, $placeHolder = array())
     //get lang
     $conf = Config::factory('app.php');
     $path = $conf->appLangPath . '/' . $conf->locale . '.ini';
-    if(!file_exists($path)) throw new KtrRuntimeException('Lang ini file not found');
+    if (!file_exists($path)) throw new KtrRuntimeException('Lang ini file not found');
     $config = Config::factory($path);
 
     $line = $config->$id;

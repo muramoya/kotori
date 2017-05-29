@@ -44,7 +44,7 @@ trait ResourcesTrait
     public function getConditions($conditions = null, $columns = array())
     {
         //$conditionsがnullの場合は全件、 intの場合はid(PK)
-        if(is_null($conditions))
+        if (is_null($conditions))
         {
             $conditions = [];
         }
@@ -56,10 +56,10 @@ trait ResourcesTrait
             ];
         }
 
-        if(!is_array($conditions)) throw new KtrRuntimeException('Invalid conditions set');
-        if(!empty($columns) && !is_array($columns)) throw new KtrRuntimeException('Invalid select columns set');
+        if (!is_array($conditions)) throw new KtrRuntimeException('Invalid conditions set');
+        if (!empty($columns) && !is_array($columns)) throw new KtrRuntimeException('Invalid select columns set');
 
-        if(!empty($columns) && is_array($columns)) $conditions['columns'] = $columns;
+        if (!empty($columns) && is_array($columns)) $conditions['columns'] = $columns;
 
         return $conditions;
     }
@@ -75,7 +75,7 @@ trait ResourcesTrait
     {
         $cond = $this->getConditions($conditions, $columns);
 
-        if(in_array('KTR\\ModelSoftDeleteTrait', class_uses($this->model)))
+        if (in_array('KTR\\ModelSoftDeleteTrait', class_uses($this->model)))
         {
             $res = $this->model::find($cond, $withDeleted);
         }
@@ -98,7 +98,7 @@ trait ResourcesTrait
     {
         $cond = $this->getConditions($conditions, $columns);
 
-        if(in_array('KTR\\ModelSoftDeleteTrait', class_uses($this->model)))
+        if (in_array('KTR\\ModelSoftDeleteTrait', class_uses($this->model)))
         {
             $res = $this->model::findFirst($cond, $withDeleted);
         }
@@ -139,7 +139,7 @@ trait ResourcesTrait
      */
     public function getCurrentPage()
     {
-        if(!$this->pagenate) throw new KtrRuntimeException('Undefined Pagenator Object');
+        if (!$this->pagenate) throw new KtrRuntimeException('Undefined Pagenator Object');
 
         return $this->page->items;
     }
@@ -151,7 +151,7 @@ trait ResourcesTrait
      */
     public function getCurrentPageNum()
     {
-        if(!$this->page) throw new KtrRuntimeException('Undefined Pagenator Object');
+        if (!$this->page) throw new KtrRuntimeException('Undefined Pagenator Object');
 
         return $this->page->current;
     }
@@ -163,7 +163,7 @@ trait ResourcesTrait
      */
     public function getTotalPagesNum()
     {
-        if(!$this->page) throw new KtrRuntimeException('Undefined Pagenator Object');
+        if (!$this->page) throw new KtrRuntimeException('Undefined Pagenator Object');
 
         return $this->page->total_pages;
     }
@@ -175,9 +175,9 @@ trait ResourcesTrait
      */
     public function getTotalPagesNumList()
     {
-        if(!$this->pagenate) throw new KtrRuntimeException('Undefined Pagenator Object');
+        if (!$this->pagenate) throw new KtrRuntimeException('Undefined Pagenator Object');
         $total = $this->getTotalPagesNum();
-        if($total < 1) return [1];
+        if ($total < 1) return [1];
 
         foreach (range(1, $total) as $num)
         {
@@ -194,7 +194,7 @@ trait ResourcesTrait
      */
     public function getTotalItemsNum()
     {
-        if(!$this->page) throw new KtrRuntimeException('Undefined Pagenator Object');
+        if (!$this->page) throw new KtrRuntimeException('Undefined Pagenator Object');
 
         return $this->page->total_items;
     }
@@ -208,7 +208,7 @@ trait ResourcesTrait
      */
     public function setValues(array $params, $model = null)
     {
-        if(is_null($model))
+        if (is_null($model))
         {
             foreach ($params as $column => $value)
             {
@@ -235,7 +235,7 @@ trait ResourcesTrait
      */
     public function createResource(array $params)
     {
-        if(empty($params)) throw new KtrRuntimeException('No params set');
+        if (empty($params)) throw new KtrRuntimeException('No params set');
         $this->setValues($params);
         return $this->model->save();
     }
@@ -249,7 +249,7 @@ trait ResourcesTrait
      */
     public function updateResource($id,  array $params)
     {
-        if(strlen((string)$id) < 1 || empty($params)) throw new KtrRuntimeException('No conditions or params set');
+        if (strlen((string)$id) < 1 || empty($params)) throw new KtrRuntimeException('No conditions or params set');
         $resource = $this->getOneResource($id);
         return $resource->update($params);
     }
@@ -262,7 +262,7 @@ trait ResourcesTrait
      */
     public function deleteResource($id)
     {
-        if(strlen((string)$id) < 1) throw new KtrRuntimeException('No conditions set');
+        if (strlen((string)$id) < 1) throw new KtrRuntimeException('No conditions set');
 
         $resource = $this->getOneResource($id);
         $ret = $resource ? $resource->delete() : false;

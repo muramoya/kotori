@@ -24,9 +24,9 @@ class SessionAdopter
 
         //confディレクトリ以下に設定ファイルがあればそれを設定値として読み込む
         $conf = Config::factory($driver . '.php');
-        if((bool)$conf) {
+        if ((bool)$conf) {
             $settings = $conf->toArray();
-        } elseif(file_exists("./{$driver}.php")) {
+        } elseif (file_exists("./{$driver}.php")) {
             $settings = require_once $driver . '.php';
         } else {
             $settings = '';

@@ -27,7 +27,7 @@ $dotEnv->load();
  ************************/
 $loadConf = Config::factory('loader.php');
 
-if(!empty($loadConf))
+if (!empty($loadConf))
 {
     $loader = new Loader();
     $loader->registerNamespaces($loadConf->toArray())->register();

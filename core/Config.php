@@ -22,11 +22,11 @@ class Config
      * @return bool|ConfigIni|ConfigPhp|ConfigYml
      */
     public static function factory($file) {
-        if(strpos($file, '/') === false) {
+        if (strpos($file, '/') === false) {
             $file = realpath(__DIR__.'/../conf') . '/' . $file;
         }
 
-        if(!file_exists($file)) return false;
+        if (!file_exists($file)) return false;
 
         $explodePath = explode('/', $file);
         $fileName = end($explodePath);

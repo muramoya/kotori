@@ -24,9 +24,9 @@ class DbAdopter
 
         //confディレクトリ以下に設定ファイルがあればそれを設定値として読み込む
         $conf = Config::factory($driver . '.php');
-        if((bool)$conf) {
+        if ((bool)$conf) {
             $settings = $conf->toArray();
-        } elseif(file_exists(__DIR__."/{$driver}.php")) {
+        } elseif (file_exists(__DIR__."/{$driver}.php")) {
             $coreConf = Config::factory(__DIR__."/{$driver}.php");
             $settings = $coreConf->toArray();
         } else {

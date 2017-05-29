@@ -32,7 +32,7 @@ class Migrate extends Command
         $type = strlen($input->getOption('create')) > 0 ? 'create' : 'update';
         $stub = file_get_contents(__DIR__ . '/stubs/migrate_' . $type . '.stub');
         $stub = str_replace('DummyClass',  \camelize($input->getArgument('name')), $stub);
-        if($type = 'create') $stub = str_replace('DummyTable', $input->getOption('create'), $stub);
+        if ($type = 'create') $stub = str_replace('DummyTable', $input->getOption('create'), $stub);
 
         $fileName = date('Y_m_d_His') . '_' . $input->getArgument('name') . '.php';
         $path = realpath(__DIR__ . '/../../../database/migrations') . '/' . $fileName;

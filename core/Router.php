@@ -33,7 +33,7 @@ class Router
     public function routing() {
         foreach ($this->conf as $url => $settings)
         {
-            if(isset($settings['method'])) {
+            if (isset($settings['method'])) {
                 $this->router->add($url, $settings['path'])->via(array_walk(
                     $settings['method'],
                     function(&$val) {$val = strtoupper($val);}
