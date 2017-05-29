@@ -7,6 +7,7 @@
  */
 
 return [
+    'appNameSpace' => env('APP_NAMESPACE', 'MyApp'),
     'appLogPath' => __DIR__ . '/../storage/logs',
     'defaultAppLogFileName' => date('Y-m-d') . '.log',
     'appLangPath' => __DIR__ . '/../lang',

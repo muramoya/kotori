@@ -8,6 +8,7 @@
 
 return [
     'host' => env('DATABASE_HOST'),
+    'port' => env('DATABASE_PORT'),
     'username' => env('DATABASE_USER'),
     'password' => env('DATABASE_PASSWORD'),
     'dbname' => env('DATABASE_DBNAME'),
