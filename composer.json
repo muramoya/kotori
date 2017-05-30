@@ -8,14 +8,11 @@
     "phpunit/phpunit": "^6.0",
     "phalcon/incubator": "~3.0",
     "symfony/console": "^3.2",
-    "illuminate/Support": "^5.4",
-    "illuminate/Database": "^5.4"
+    "robmorgan/phinx": "^0.8.0"
   },
   "autoload": {
     "psr-4": {
-      "KTR\\": "core/",
-      "KTR\\UnitTest\\": "core/testing/",
-      "KTR\\UnitTest\\Models\\": "core/testing/models"
+      "KTR\\": "core/"
     }
   }
 }

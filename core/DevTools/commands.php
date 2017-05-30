@@ -10,5 +10,7 @@ return [
     'KTR\\DevTools\\Factory\\Migrate',
     'KTR\\DevTools\\Factory\\Controller',
     'KTR\\DevTools\\Factory\\Model',
-//    'KTR\\DevTools\\Db\\Seeder',
+    'KTR\\DevTools\\Factory\\Seeder',
+    'KTR\\DevTools\\Migration\\Migration',
+    'KTR\\DevTools\\Db\\Seed',
 ];

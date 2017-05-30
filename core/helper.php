@@ -66,3 +66,13 @@ function camelize($str)
 {
     return ucfirst(strtr(ucwords(strtr($str, ['_' => ' '])), [' ' => '']));
 }
+
+/**
+ * スネークケースに変換
+ * @param $str
+ * @return string
+ */
+function underscore($str)
+{
+    return ltrim(strtolower(preg_replace('/[A-Z]/', '_\0', $str)), '_');
+}

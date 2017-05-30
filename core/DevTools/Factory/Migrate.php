@@ -29,12 +29,29 @@ class Migrate extends Command
 
     protected function execute(InputInterface $input, OutputInterface $output)
     {
+        if(! preg_match('/^([A-Z][a-z0-9]+)+$/', $input->getArgument('name')))
+        {
+            throw new \InvalidArgumentException(sprintf(
+                'The migration class name "%s" is invalid. Please use CamelCase format.',
+                $input->getArgument('name')
+            ));
+        }
         $type = strlen($input->getOption('create')) > 0 ? 'create' : 'update';
-        $stub = file_get_contents(__DIR__ . '/stubs/migrate_' . $type . '.stub');
-        $stub = str_replace('DummyClass',  \camelize($input->getArgument('name')), $stub);
+        $stub = file_get_contents(__DIR__ . '/stubs/' . $type . '_table.stub');
+        $stub = str_replace('DummyClass',  $input->getArgument('name'), $stub);
         if ($type = 'create') $stub = str_replace('DummyTable', $input->getOption('create'), $stub);
 
-        $fileName = date('Y_m_d_His') . '_' . $input->getArgument('name') . '.php';
+        $files = scandir(__DIR__ . '/../../../database/migrations');
+        foreach ($files as $file)
+        {
+            if ($file == '.' || $file == '..') continue;
+            if (strpos($file, underscore($input->getArgument('name'))) !== false)
+            {
+                $output->writeln('<bg=red>' . $input->getArgument('name') . ' class is already exists.</bg=red>');
+                return false;
+            }
+        }
+        $fileName = date('YmdHis') . '_' . underscore($input->getArgument('name')) . '.php';
         $path = realpath(__DIR__ . '/../../../database/migrations') . '/' . $fileName;
         file_put_contents($path, $stub);
 
