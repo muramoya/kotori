@@ -2,7 +2,7 @@
 
 ```
 cd /path/to/project
-composer create-project murmaoya/kotori --prefer-dist . 1.0.0
+composer create-project murmaoya/kotori --prefer-dist . 1.1.0
 ```
 
 Copyright (c) 2017 muramoya  
