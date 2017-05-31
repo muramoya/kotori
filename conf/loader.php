@@ -6,6 +6,7 @@
  * @version: 1.0
  */
 return [
-//    env('APP_NAMESPACE').'\Controllers' => realpath(__DIR__.'/../apps/controllers'),
-//    env('APP_NAMESPACE').'\Models' => realpath(__DIR__.'/../core/testing/models/'),
+    env('APP_NAMESPACE').'\\Apps\\Controllers' => realpath(__DIR__.'/../apps/controllers'),
+    env('APP_NAMESPACE').'\\Apps\\Models' => realpath(__DIR__.'/../apps/models/'),
+    env('APP_NAMESPACE').'\\Apps\\Commands' => realpath(__DIR__.'/../apps/commands'),
 ];

@@ -6,12 +6,22 @@ require_once __DIR__.'/vendor/autoload.php';
 require_once __DIR__.'/core/helper.php';
 
 use Dotenv\Dotenv;
+use KTR\Config;
+use Phalcon\Loader;
 
 /*
  * dotenv
  ************************/
 $dotEnv = new Dotenv(__DIR__);
 $dotEnv->load();
+
+$loadConf = Config::factory('loader.php');
+
+if (!empty($loadConf))
+{
+    $loader = new Loader();
+    $loader->registerNamespaces($loadConf->toArray())->register();
+}
 
 $cli = new \Symfony\Component\Console\Application('Kotori DevTools', '1.1.0');
 
