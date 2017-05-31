@@ -15,7 +15,10 @@ $dotEnv->load();
 
 $cli = new \Symfony\Component\Console\Application('Kotori DevTools', '1.1.0');
 
-$commands = require_once __DIR__ . '/core/DevTools/commands.php';
+$commands = \KTR\Config::factory(__DIR__ . '/core/DevTools/commands.php')->toArray();
+$userCom = \KTR\Config::factory('commands.php');
+if($userCom !== false && !empty($userCom->toArray())) $commands = array_merge($commands, $userCom->toArray());
+
 $classes = [];
 
 foreach ($commands as $command)
