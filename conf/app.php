@@ -2,7 +2,7 @@
 /**
  * アプリケーション設定
  * Date: 2017/05/27
- * @author takuya
+ * @author muramoya
  * @version: 1.0
  */
 

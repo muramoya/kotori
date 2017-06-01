@@ -2,18 +2,32 @@
 <?php
 
 require_once __DIR__.'/vendor/autoload.php';
-//helper
-require_once __DIR__.'/core/helper.php';
 
-use Dotenv\Dotenv;
-use KTR\Config;
+use KTRLib\Config;
 use Phalcon\Loader;
+
+define('APP_BASE_PATH', realpath(__DIR__));
+
+$di = new \Phalcon\Di\FactoryDefault();
+
+/*
+ * services
+ ************************/
+$serviceConf = Config::factory('services.php');
+if($serviceConf->count() > 0) {
+    foreach ($serviceConf as $name => $class) {
+        $di->set($name, $class);
+    }
+}
+
+//クロージャでの登録
+require_once __DIR__.'/conf/services_from_closure.php';
 
 /*
  * dotenv
  ************************/
-$dotEnv = new Dotenv(__DIR__);
-$dotEnv->load();
+$env = $di->get('env');
+$env->load();
 
 $loadConf = Config::factory('loader.php');
 
@@ -23,18 +37,4 @@ if (!empty($loadConf))
     $loader->registerNamespaces($loadConf->toArray())->register();
 }
 
-$cli = new \Symfony\Component\Console\Application('Kotori DevTools', '1.1.0');
-
-$commands = \KTR\Config::factory(__DIR__ . '/core/DevTools/commands.php')->toArray();
-$userCom = \KTR\Config::factory('commands.php');
-if($userCom !== false && !empty($userCom->toArray())) $commands = array_merge($commands, $userCom->toArray());
-
-$classes = [];
-
-foreach ($commands as $command)
-{
-    $classes[] = new $command;
-}
-
-$cli->addCommands($classes);
-$cli->run();
+(new \KTRLib\Console())->run();
