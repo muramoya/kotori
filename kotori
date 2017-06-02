@@ -26,8 +26,7 @@ require_once __DIR__.'/conf/services_from_closure.php';
 /*
  * dotenv
  ************************/
-$env = $di->get('env');
-$env->load();
+$di->get('env');
 
 $loadConf = Config::factory('loader.php');
 
