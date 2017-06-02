@@ -3,5 +3,4 @@ vendor
 .env.example
 storage/logs/*
 storage/session/*
-core/testing
 composer.lock

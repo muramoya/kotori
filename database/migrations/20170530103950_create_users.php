@@ -1,6 +1,6 @@
 <?php
 
-use KTR\DevTools\Migration\AbstractMigration;
+use KTRLib\DevTools\Migration\AbstractMigration;
 
 class CreateUsers extends AbstractMigration
 {
