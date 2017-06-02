@@ -38,9 +38,7 @@ class Bootstrap
         /*
          * dotenv
          ************************/
-        $env = $di->get('env');
-        $env->load();
-
+        $di->get('env');
 
         define('APP_BASE_PATH', realpath(__DIR__ . '/../'));
 

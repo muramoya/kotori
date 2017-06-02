@@ -16,5 +16,9 @@ $di->set('db', function() {
 });
 
 $di->set('env', function() {
-    return new Dotenv\Dotenv(__DIR__ . '/../');
+    if(file_exists(__DIR__ . '/../.env'))
+    {
+        $env = new Dotenv\Dotenv(__DIR__ . '/../');
+        $env->load();
+    }
 });
