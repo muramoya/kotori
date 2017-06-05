@@ -17,5 +17,5 @@ try
 }
 catch (Error | Exception $e)
 {
-    (new \KTRLib\Logger())->write([$e->getMessage(), $e->getTraceAsString()]);
+    (new \KTRLib\Logger())->write([$e->getMessage(), $e->getTraceAsString()], \KTRLib\Logger::ERROR);
 }
