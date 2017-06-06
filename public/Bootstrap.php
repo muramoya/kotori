@@ -41,8 +41,6 @@ class Bootstrap
          ************************/
         $di->get('env');
 
-        define('APP_BASE_PATH', realpath(__DIR__ . '/../'));
-
         /*
          * autoload
          ************************/
@@ -61,10 +59,9 @@ class Bootstrap
     {
         try
         {
-            $router = new Router();
+            $router = new Router($this->app);
             //ルーティングに沿ったcontrollerを設定
             $router->routing();
-            $this->setNotFoundAction();
             $this->app->handle();
         }
         catch(\Exception $e)
@@ -75,13 +72,5 @@ class Bootstrap
         {
             throw $e;
         }
-    }
-
-    private function setNotFoundAction()
-    {
-        $app = $this->app;
-        $this->app->notFound(function() use ($app) {
-            $app->response->setStatusCode(404, "Not Found")->sendHeaders();
-        });
     }
 }

@@ -7,5 +7,13 @@
  */
 
 return [
-    '/sample/get/{id}' => ['path' => 'Sample::get', 'method' => ['GET']]
+    '/sample' => [
+        'controller' => 'SampleController',
+        'GET' => [
+            ['action' => 'show', 'url' => '/{id}'],
+        ],
+        'POST' => [
+            ['action' => 'create'],
+        ],
+    ]
 ];
