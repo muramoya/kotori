@@ -10,6 +10,7 @@ use Phalcon\Mvc\Micro;
 use Phalcon\Loader;
 use KTRLib\Config;
 use Phalcon\Di\FactoryDefault;
+use KTRLib\Router;
 
 class Bootstrap
 {
