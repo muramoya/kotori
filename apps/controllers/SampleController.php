@@ -2,24 +2,24 @@
 
 namespace KTRApp\Apps\Controllers;
 
-use Phalcon\Mvc\Controller;
+use KTRLib\AbstractController;
 
-class SampleController extends Controller
+class SampleController extends AbstractController
 {
     public function index()
     {
     }
 
-    public function show($id)
+    public function show()
     {
-        $this->response->setContent($id);
-        return $this->response;
+        $param = $this->getParams();
+        return ['return' => $param];
     }
 
     public function create()
     {
-        $this->response->setContent('post');
-        return $this->response;
+        $param = $this->getParams();
+        return ['return' => $param];
     }
 
     public function edit()

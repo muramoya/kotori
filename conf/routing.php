@@ -8,12 +8,10 @@
 
 return [
     '/sample' => [
-        'controller' => 'SampleController',
-        'GET' => [
-            ['action' => 'show', 'url' => '/{id}'],
-        ],
-        'POST' => [
-            ['action' => 'create'],
-        ],
+        'controller' => 'sample',
+        'actions' => [
+            ['action' => 'show', 'url' => '/{id}', 'method' => ['GET']],
+            ['action' => 'create', 'method' => ['POST']],
+        ]
     ]
 ];

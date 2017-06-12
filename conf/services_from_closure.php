@@ -7,7 +7,7 @@
  */
 
 use KTRLib\Database\DbAdopter;
-
+use KTRLib\Router;
 //$di変数はPhalcon\\Di\\FactoryDefaultのインスタンス。
 //index.phpでnew済みのため
 
@@ -21,4 +21,9 @@ $di->set('env', function() {
         $env = new Dotenv\Dotenv(__DIR__ . '/../');
         $env->load();
     }
+});
+
+$di->set('router', function () {
+    $router = new Router();
+    return $router->routing();
 });

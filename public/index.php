@@ -17,5 +17,10 @@ try
 }
 catch (Error | Exception $e)
 {
-    (new \KTRLib\Logger())->write([$e->getMessage(), $e->getTraceAsString()], \KTRLib\Logger::ERROR);
+    $msg = $e->getMessage() . PHP_EOL . '[Stack Trace]' . PHP_EOL . $e->getTraceAsString();
+    (new \KTRLib\Logger())->error($msg);
+    $response = new Phalcon\Http\Response();
+    if (\KTRLib\Config::factory('app.php')->isDebug) $response->setJsonContent(['message' => $e->getMessage(), 'stack_trace' => explode("\n", $e->getTraceAsString())]);
+    $response->setStatusCode(500)->sendHeaders();
+    $response->send();
 }

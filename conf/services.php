@@ -8,5 +8,5 @@
  */
 
 return [
-//    'sample' => 'Sample\\Sample',
+    'view' => 'Phalcon\\Mvc\\View',
 ];

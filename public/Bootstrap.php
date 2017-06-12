@@ -6,16 +6,15 @@
  * @version: 1.0
  */
 
-use Phalcon\Mvc\Micro;
+use Phalcon\Mvc\Application;
 use Phalcon\Loader;
 use KTRLib\Config;
 use Phalcon\Di\FactoryDefault;
-use KTRLib\Router;
 
 class Bootstrap
 {
     /**
-     * @var Micro
+     * @var Application
      */
     private $app;
 
@@ -45,23 +44,20 @@ class Bootstrap
          * autoload
          ************************/
         $loadConf = Config::factory('loader.php');
-
         if (!empty($loadConf))
         {
             $loader = new Loader();
             $loader->registerNamespaces($loadConf->toArray())->register();
         }
 
-        $this->app = new Micro($di);
+        $this->app = new Application($di);
     }
 
     public function dispatch()
     {
         try
         {
-            $router = new Router($this->app);
-            //ルーティングに沿ったcontrollerを設定
-            $router->routing();
+            $this->app->dispatcher->setActionSuffix('');
             $this->app->handle();
         }
         catch(\Exception $e)
